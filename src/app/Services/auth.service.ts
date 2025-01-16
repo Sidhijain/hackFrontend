@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  email: string="";
 
   constructor() { }
   private tokenKey = 'auth-token';
-
-
-
   // Save token to localStorage
-  saveToken(token: string): void {
+  saveToken(token: string,email:any): void {
+    console.log("token",token);
     localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem('email',this.email)
   }
 
   // Get token from localStorage

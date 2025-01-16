@@ -8,23 +8,37 @@ import { LoginService } from '../../Services/login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  username = '';
-  password = '';
+  email: string = '';
+  password: string = '';
   constructor(private authService: AuthService,private loginService:LoginService){}
   login() {
+   
       const payload = {
-      username: this.username,
+      email: this.email,
       password: this.password
     };
+    console.log(this.email)
     this.loginService.login(payload).subscribe({
-      next: (response: { token: string; }) => {
-        this.authService.saveToken(response.token);
-        console.log('Login successful');
+      next: (response: any) => {
+        if (response.status_code === 200 && response.status === 'success') {
+          const token = response.data.token;
+          this.authService.saveToken(token,this.email); 
+          console.log('Login successful:', response.message);
+        } else {
+          console.error('Unexpected response:', response);
+        }
       },
       error: (error: any) => {
         console.error('Login failed', error);
       },
     });
   }
-  
+   logout()
+   {
+    const payload={
+      email:localStorage.getItem(this.email)
+    }
+    console.log(payload,"payload in logout")
+    
+   }
 }

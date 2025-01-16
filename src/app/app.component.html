@@ -2,5 +2,12 @@
 <h1>
   Hello! Project is deployed
 </h1>
-<p>{{data}}</p>
 <app-login></app-login>
+<button (click)="getData()">Fetch Data</button>
+
+<div *ngIf="data">
+  <h2>Data:</h2>
+  <p>{{ data }}</p>
+</div>
+
+

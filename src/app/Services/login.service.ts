@@ -6,13 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://your-api'; // Base URL of your API
   private tokenKey = 'auth-token';
 
   constructor(private http: HttpClient) {}
 
   // Method to handle login API call
   login(payload:any): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(this.apiUrl, payload);
+    return this.http.post<{ token: string }>("https://bit-builder-backend.onrender.com/signin", payload);
   }
+  logout(payload:any): Observable<any> {
+    return this.http.post<{ token: string }>("https://bit-builder-backend.onrender.com/logout", payload);
+  }
+
 }
