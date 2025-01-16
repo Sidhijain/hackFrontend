@@ -4,14 +4,20 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PopupComponent } from './Components/popup/popup.component';
 
 import { AuthInterceptor } from './auth.interceptor';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { SignupComponent } from './Components/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoaderComponent,
+    PopupComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

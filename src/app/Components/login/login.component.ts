@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { LoginService } from '../../Services/login.service';
+import { PopupService } from '../../Services/popup.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { LoginService } from '../../Services/login.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  constructor(private authService: AuthService,private loginService:LoginService){}
+  constructor(private authService: AuthService,private loginService:LoginService,private popupService:PopupService){}
   login() {
    
       const payload = {
@@ -26,10 +27,12 @@ export class LoginComponent {
           console.log('Login successful:', response.message);
         } else {
           console.error('Unexpected response:', response);
+          this.popupService.showPopup('Login Failed', 'failure');
         }
       },
       error: (error: any) => {
         console.error('Login failed', error);
+        this.popupService.showPopup('Login Failed', 'failure');
       },
     });
   }
@@ -38,7 +41,20 @@ export class LoginComponent {
     const payload={
       email:localStorage.getItem(this.email)
     }
-    console.log(payload,"payload in logout")
+    this.loginService.logout(payload).subscribe(
+      (response: any) => {
+        if (response.status === 'success') {
+          console.log('Logout successful:', response.message);
+          this.authService.clearLocalStorage(); 
+        } else {
+          console.error('Logout failed:', response.message);
+        }
+      },
+      (error: any) => {
+        console.error('Error during logout:', error);
+      }
+    );
+
     
    }
 }

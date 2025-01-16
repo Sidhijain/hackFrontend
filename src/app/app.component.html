@@ -1,4 +1,5 @@
 <router-outlet></router-outlet>
+<app-loader></app-loader>
 <h1>
   Hello! Project is deployed
 </h1>
@@ -11,3 +12,10 @@
 </div>
 
 
+
+<app-popup
+  [message]="popupMessage"
+  [popupType]="popupType"
+  [isVisible]="isPopupVisible"
+  (close)="isPopupVisible = false"
+></app-popup>

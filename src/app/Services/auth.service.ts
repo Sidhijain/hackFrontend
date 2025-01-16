@@ -12,9 +12,12 @@ export class AuthService {
   saveToken(token: string,email:any): void {
     console.log("token",token);
     localStorage.setItem(this.tokenKey, token);
-    localStorage.setItem('email',this.email)
+    localStorage.setItem('email',email)
   }
 
+  clearLocalStorage(): void {
+    localStorage.clear();
+  }
   // Get token from localStorage
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);

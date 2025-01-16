@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoDataService } from './Services/demo-data.service';
+import { PopupService } from './Services/popup.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +10,17 @@ export class AppComponent {
   title = 'hackFrontend';
   
   data:any;
-  constructor(private dataService : DemoDataService) {}
-  
+  isPopupVisible = false;
+  popupMessage = '';
+  popupType: 'success' | 'failure' = 'success';
+
+  constructor(private dataService : DemoDataService,private popupService: PopupService) {
+    this.popupService.popupState$.subscribe(({ message, type }) => {
+      this.popupMessage = message;
+      this.popupType = type;
+      this.isPopupVisible = true;
+    });
+  }
   ngOnInit() :void{
     
 }
@@ -21,10 +31,12 @@ getData()
       if(response.status=="success"){
       this.data = response.message;
       console.log('Data fetched successfully:', response);
+        this.popupService.showPopup('Data fetched successfully!', 'success');
       }
     },
     (error: any) => {
       console.error('Error fetching data:', error);
+        this.popupService.showPopup('Failed to fetch data.', 'failure');
     }
   );
 }

@@ -15,7 +15,10 @@ export class LoginService {
     return this.http.post<{ token: string }>("https://bit-builder-backend.onrender.com/signin", payload);
   }
   logout(payload:any): Observable<any> {
-    return this.http.post<{ token: string }>("https://bit-builder-backend.onrender.com/logout", payload);
+    return this.http.post("https://bit-builder-backend.onrender.com/logout", payload);
+  }
+  signup(payload:any): Observable<any> {
+    return this.http.post("https://bit-builder-backend.onrender.com/signup", payload);
   }
 
 }

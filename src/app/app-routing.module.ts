@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
+import { SignupComponent } from './Components/signup/signup.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: AppComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 ];
 

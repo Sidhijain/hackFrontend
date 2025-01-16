@@ -1,0 +1,33 @@
+<div>
+    <h1>Sign Up</h1>
+    <form (ngSubmit)="signUp()">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" [(ngModel)]="formData.name" name="name" required />
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" type="email" [(ngModel)]="formData.email" name="email" required />
+      </div>
+  
+      <div>
+        <label for="mobile">Mobile:</label>
+        <input id="mobile" [(ngModel)]="formData.mobile" name="mobile" required />
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" type="password" [(ngModel)]="formData.password" name="password" required />
+      </div>
+  
+      <div>
+        <label for="answer">Security Answer:</label>
+        <input id="answer" [(ngModel)]="formData.answer" name="answer" required />
+      </div>
+  
+      <button type="submit">Sign Up</button>
+    </form>
+  
+  </div>
+  
