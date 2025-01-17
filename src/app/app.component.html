@@ -3,12 +3,18 @@
 <h1>
   Hello! Project is deployed
 </h1>
+<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>
 <app-login></app-login>
 <button (click)="getData()">Fetch Data</button>
 
 <div *ngIf="data">
   <h2>Data:</h2>
   <p>{{ data }}</p>
+<span class="error">Error</span>
+
+<!-- <span class="error">{{errorMessage('documentNumber')}}</span> -->
 </div>
 
 

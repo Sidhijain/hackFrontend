@@ -40,4 +40,11 @@ getData()
     }
   );
 }
+
+// Used in all the components
+// errorMessage(controlName: string) {
+//   let control = this.panVerifyform.controls[controlName]
+//   return this.errorService.errorMessage(control, controlName, ErrorMessage.panVerifyform);
+// }
+
 }
