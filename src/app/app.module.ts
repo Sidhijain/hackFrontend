@@ -1,15 +1,18 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PopupComponent } from './Components/popup/popup.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { LoaderInterceptor } from './loader.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopupComponent
+    PopupComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
