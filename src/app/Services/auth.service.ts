@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,13 +7,14 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   email: string="";
 
-  constructor() { }
+  constructor(private router: Router) { }
   private tokenKey = 'auth-token';
   // Save token to localStorage
   saveToken(token: string,email:any): void {
     console.log("token",token);
     localStorage.setItem(this.tokenKey, token);
     localStorage.setItem('email',email)
+
   }
 
   clearLocalStorage(): void {
@@ -21,6 +23,9 @@ export class AuthService {
   // Get token from localStorage
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
+  }
+  getEmail(): string | null {
+    return localStorage.getItem(this.email);
   }
 
   // Remove token
@@ -68,5 +73,21 @@ export class AuthService {
   //   // Redirect to login page
   //   console.log('User logged out');
   // }
+  private logoutTimer: any;
 
+ 
+
+  startLogoutTimer(callback: () => void) {
+    this.clearLogoutTimer(); // Clear any existing timer
+    this.logoutTimer = setTimeout(() => {
+      callback();
+    }, 10 * 1000); // 30 minutes
+  }
+
+  clearLogoutTimer() {
+    if (this.logoutTimer) {
+      clearTimeout(this.logoutTimer);
+      this.logoutTimer = null;
+    }
+  }
 }

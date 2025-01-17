@@ -20,5 +20,8 @@ export class LoginService {
   signup(payload:any): Observable<any> {
     return this.http.post("https://bit-builder-backend.onrender.com/signup", payload);
   }
+  passwordreset(payload: { email: string; new_password: string; answer: string }):Observable<any>{
+    return this.http.post("https://bit-builder-backend.onrender.com/reset_password", payload);
+  }
 
 }

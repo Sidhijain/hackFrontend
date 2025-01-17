@@ -11,13 +11,16 @@ import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { SignupComponent } from './Components/signup/signup.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
+import { LoaderInterceptor } from './loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoaderComponent,
     PopupComponent,
-    SignupComponent
+    SignupComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,11 @@ import { SignupComponent } from './Components/signup/signup.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true,
     },
   ],
