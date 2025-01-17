@@ -1,0 +1,21 @@
+<p>popup works!</p>
+<!-- <div class="popup-container" *ngIf="isVisible">
+    <div class="popup-content" [ngClass]="popupType">
+      <p>{{ message }}</p>
+      <button (click)="closePopup()">Close</button>
+    </div>
+  </div>
+   -->
+   <div class="popup-container" *ngIf="isVisible">
+    <div class="custom-modal">
+      <div [ngClass]="[popupType, popupType + '-animation', 'icon-top']">
+        <i class="fa" [ngClass]="popupType === 'success' ? 'fa-check' : 'fa-times'"></i>
+      </div>
+      <div [ngClass]="[popupType, 'border-bottom']"></div>
+      <div class="content">
+        <p class="message-type">{{ message }}</p>
+      </div>
+      <button class="close-button" (click)="closePopup()">Close</button>
+    </div>
+  </div>
+  

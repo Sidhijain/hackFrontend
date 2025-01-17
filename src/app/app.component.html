@@ -6,6 +6,12 @@
   Hello world!
 </h1>
 <p>{{data}}</p>
+<app-popup
+  [message]="popupMessage"
+  [popupType]="popupType"
+  [isVisible]="isPopupVisible"
+  (close)="isPopupVisible = false"
+></app-popup>
 <span class="error">Error</span>
 
 <!-- <span class="error">{{errorMessage('documentNumber')}}</span> -->
