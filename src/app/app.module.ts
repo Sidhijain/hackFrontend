@@ -7,12 +7,16 @@ import { PopupComponent } from './Components/popup/popup.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { LoaderInterceptor } from './loader.interceptor';
+import { HeadersComponent } from './Components/headers/headers.component';
+import { HomeComponent } from './Components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    HeadersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

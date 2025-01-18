@@ -1,0 +1,28 @@
+
+/* Default height for small devices */
+#intro-example {
+    height: 400px;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  /* Height for devices larger than 992px */
+  @media (min-width: 992px) {
+    #intro-example {
+      height: 600px;
+    }
+  }
+  
+  /* Masking the background image */
+  #intro-example .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+  
+  
